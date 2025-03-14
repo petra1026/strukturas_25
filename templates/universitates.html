@@ -1,16 +1,13 @@
 {%extends "index.html"%}
 
 {%block saturs%}
+<h2>Latvijas augstskolas</h2>
 
-<h3>Nosaukums - mājaslapa</h3>
 {%for viena in uni%}
-    <p>
-    <b>{{viena["nosaukums"]}}</b> - 
-        {% for elem in viena["majaslapas"] %} 
-            <a href="{{elem}}">Te mājaslapa</a> 
-        {%endfor%}
-
-    </p>
+    <div style="margin-bottom: 15px;">
+        <h3>{{viena["nosaukums"]}}</h3>
+        <a href="{{viena['majaslapas'][0]}}" target="_blank">Mājaslapa</a>
+    </div>
 {% endfor %}
 
 {%endblock%}

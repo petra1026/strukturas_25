@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+{% block saturs %}
+<h2>Vārdu skaitītājs</h2>
+
+<div class="search-container">
+    <form method="post">
+        <textarea name="teksts" rows="5" cols="50" placeholder="Ievadiet tekstu šeit..." style="margin-bottom: 10px; width: 100%;"></textarea>
+        <button type="submit">Skaitīt vārdus</button>
+    </form>
+</div>
+
+{% if rezultats %}
+    <div class="results-container" style="margin-top: 20px;">
+        <h3>Rezultāti:</h3>
+        <p style="font-weight: bold; margin-bottom: 15px;">Kopējais vārdu skaits: {{ rezultats.values() | sum }}</p>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Vārds</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Skaits</th>
+            </tr>
+            {% for vards, skaits in rezultats.items() | sort(attribute='1', reverse=true) %}
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ vards }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ skaits }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,27 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="{{url_for('static', filename = 'funkcijas.js')}}"></script>
-    </head>
-    <body>
-        <a href = "/">Joks</a>
-        <br>
-        <a href="/uni">Universitātes</a>
-        <br>
-        <a href = "/jschats">Čats</a>
-        <hr>
-        {%block saturs%}
-        <h2>Joki šeit!</h2>
-        <img src="{{bilde}}">
-        <p>{{joks}}</p>
-        <form method = "post">
-            <select name = "kat">
+<head>
+    <meta charset="UTF-8">
+    <title>Joku lapa</title>
+    <script src="{{url_for('static', filename='funkcijas.js')}}"></script>
+</head>
+<body>
+    <nav>
+        <a href="/">Joks</a> |
+        <a href="/uni">Universitātes</a> |
+        <a href="/jschats">Čats</a> |
+        <a href="/vardi">Vārdu skaitītājs</a>
+    </nav>
+    <hr>
+    {%block saturs%}
+    <h2>Joku meklētājs</h2>
+    
+    <div>
+        <form method="post">
+            <input type="text" name="meklet" placeholder="Meklēt joku pēc teksta">
+            <button type="submit">Meklēt</button>
+        </form>
+    </div>
+
+    <div>
+        <form method="post">
+            <select name="kat">
                 {% for elements in kategorijas %}
-                    <option value = {{elements}}>{{elements}}</option>
+                    <option value="{{elements}}">{{elements}}</option>
                 {%endfor%}
             </select>
-            <input type="submit" value="Izvēlēties joka kategoriju!">
+            <button type="submit">Izvēlēties kategoriju</button>
         </form>
-        {%endblock%}
-    </body>
+    </div>
+
+    <div>
+        {% if joks %}
+            <img src="{{bilde}}" alt="Chuck Norris">
+            <p>{{joks}}</p>
+        {% endif %}
+        
+        {% if meklesanas_rezultati %}
+            <h3>Atrasti joki:</h3>
+            {% for joks in meklesanas_rezultati %}
+                <div>
+                    <img src="{{joks.icon_url}}" alt="Chuck Norris">
+                    <p>{{joks.value}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    {%endblock%}
+</body>
 </html>
