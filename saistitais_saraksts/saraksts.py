@@ -75,25 +75,24 @@ class List:
         if index1 == index2:
             return
 
-        # Find the first element
+        # atrast pirmo elementu
         elem1 = self.head
         for i in range(index1):
             elem1 = elem1.next
 
-        # Find the second element
+        # atrast otro elementu
         elem2 = self.head
         for i in range(index2):
             elem2 = elem2.next
 
-        # Swap the values of the elements
         elem1.info, elem2.info = elem2.info, elem1.info
         return
 
 
-# Test code
+# Testēt kodu
 my_list = List()
 
-# 1. Testing add() with different positions
+# 1. Tests add() ar dažādām pozīcijām
 print("1. Testing add() operation:")
 my_list.add("First")  # Add to end
 my_list.add("Second") # Add to end
@@ -103,7 +102,7 @@ my_list.add("Middle", 2)  # Add to middle
 print("After adding elements:")
 my_list.read()
 
-# 2. Testing switch() with different combinations
+# 2. Tests switch() ar dažādām kombinācijām
 print("\n2. Testing switch() operation:")
 print("Switch first and last elements (0, 4):")
 my_list.switch(0, 4)
@@ -113,7 +112,7 @@ print("\nSwitch adjacent elements (1, 2):")
 my_list.switch(1, 2)
 my_list.read()
 
-# 3. Testing pop() multiple times
+# 3. Tests pop() vairākas reizes
 print("\n3. Testing pop() operation:")
 print("After first pop():")
 my_list.pop()
@@ -138,7 +137,7 @@ my_list.read()
 print("\nTrying to pop from empty list:")
 my_list.pop()  # Should print error message
 
-# 5. Testing adding to empty list after clearing
+# 5. Tests pievienot tukšajam listam pēc after clearing
 print("\n5. Testing list rebuild:")
 my_list.add("New Start")
 my_list.add("New End")
