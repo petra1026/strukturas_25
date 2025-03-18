@@ -5,15 +5,15 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # Get random joke
+    # random joks
     response = requests.get("https://api.chucknorris.io/jokes/random")
     joke = response.json()
 
-    # Get categories
+    # kategorijas
     response = requests.get("https://api.chucknorris.io/jokes/categories")
     categories = response.json()
 
-    # Handle search and category selection
+    # search un kategorijas
     if request.method == "POST":
         if "meklet" in request.form:
             query = request.form["meklet"]
@@ -31,7 +31,6 @@ def index():
             response = requests.get(f"https://api.chucknorris.io/jokes/random?category={category}")
             joke = response.json()
 
-    # Render template with joke and categories
     return render_template(
         "index.html",
         joks=joke["value"],
